@@ -11,7 +11,7 @@ pics = {}
 
 
 def read_from_csv():
-    # reading csv file
+    # reading csv files from the folder
     for filename in os.listdir('./csv'):
         with open('./csv/'+filename, 'r') as csvfile:
             # creating a csv reader object
@@ -26,9 +26,9 @@ def read_from_csv():
             # print("Total no. of rows: %d" % (csvreader.line_num))
 
 
-def add_to_dict(pic_name):
+def add_to_dict(pic_rel_path):
     img2vec = Img2Vec()
-    filename = os.fsdecode(pic_name)
+    filename = os.fsdecode(pic_rel_path)
 
     print("Filename is: %s" % filename)
     img = Image.open(os.path.join('.', filename))
@@ -37,18 +37,18 @@ def add_to_dict(pic_name):
 
 
 def main():
-    pic_name = str(input("Enter relative path of the image to search?\n"))
+    pic_rel_path = str(input("Enter relative path of the image to search?\n"))
 
-    add_to_dict(pic_name)
+    add_to_dict(pic_rel_path)
 
     read_from_csv()
     try:
         sims = {}
         for key in list(pics.keys()):
-            if key == pic_name:
+            if key == pic_rel_path:
                 continue
 
-            sims[key] = cosine_similarity(pics[pic_name].reshape((1, -1)), pics[key].reshape((1, -1)))[0][0]
+            sims[key] = cosine_similarity(pics[pic_rel_path].reshape((1, -1)), pics[key].reshape((1, -1)))[0][0]
 
         d_view = [(v, k) for k, v in sims.items()]
         d_view.sort(reverse=True)
