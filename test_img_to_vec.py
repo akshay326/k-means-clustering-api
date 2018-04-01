@@ -10,27 +10,7 @@ import csv
 pics = {}
 
 
-def store_as_csv():
-    input_path = './train-images/Face'
-    img2vec = Img2Vec()
-
-    # Open File
-    file = open("images.csv", 'w')
-
-    # Create Writer Object
-    wr = csv.writer(file)
-
-    for file in os.listdir(input_path):
-        filename = os.fsdecode(file)
-        img = Image.open(os.path.join(input_path, filename))
-        vec = img2vec.get_vec(img)
-        pics[filename] = vec
-
-        wr.writerow([filename, vec])
-
-
 def read_from_csv():
-
     # reading csv file
     with open("images.csv", 'r') as csvfile:
         # creating a csv reader object
@@ -39,36 +19,46 @@ def read_from_csv():
         # extracting each data row one by one
         for row in csvreader:
             # Ignore the first `[` and last `]` in row[1]
-            pics[row[0]] = np.fromstring(row[1][1:-1],dtype=np.float_,sep=' ')
+            pics[row[0]] = np.fromstring(row[1][1:-1], dtype=np.float_, sep=' ')
 
         # get total number of rows
         print("Total no. of rows: %d" % (csvreader.line_num))
 
 
+def add_to_dict(pic_name):
+    img2vec = Img2Vec()
+    filename = os.fsdecode(pic_name)
+
+    print("Filename is: %s" % filename)
+    img = Image.open(os.path.join('.', filename))
+    vec = img2vec.get_vec(img)
+    pics[filename] = vec
+
+
 def main():
     read_from_csv()
-    pic_name = ""
-    while pic_name != "exit":
-        pic_name = str(input("Which filename would you like similarities for?\n"))
+    pic_name = str(input("Enter relative path of the image to search?\n"))
 
-        try:
-            sims = {}
-            for key in list(pics.keys()):
-                if key == pic_name:
-                    continue
+    add_to_dict(pic_name)
 
-                sims[key] = cosine_similarity(pics[pic_name].reshape((1, -1)), pics[key].reshape((1, -1)))[0][0]
+    try:
+        sims = {}
+        for key in list(pics.keys()):
+            if key == pic_name:
+                continue
 
-            d_view = [(v, k) for k, v in sims.items()]
-            d_view.sort(reverse=True)
-            for v, k in d_view[0:10]:
-                print(v, k)
+            sims[key] = cosine_similarity(pics[pic_name].reshape((1, -1)), pics[key].reshape((1, -1)))[0][0]
 
-        except KeyError as e:
-            print('Could not find filename %s' % e)
+        d_view = [(v, k) for k, v in sims.items()]
+        d_view.sort(reverse=True)
+        for v, k in d_view[0:10]:
+            print(v, k)
 
-        except Exception as e:
-            print(e)
+    except KeyError as e:
+        print('Could not find filename %s' % e)
+
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':
