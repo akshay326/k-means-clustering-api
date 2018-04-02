@@ -45,6 +45,10 @@ $.ajax(settings).done(function (response) {
 ```
 
 ## Sample Result
+Sample Image 
+
+![Image of a cat](cat.jpg)
+
 ```json
 [
   [
