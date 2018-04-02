@@ -43,3 +43,30 @@ $.ajax(settings).done(function (response) {
   console.log(response);
 });
 ```
+
+## Sample Result
+```json
+[
+  [
+    0.8155140106062471, 
+    "https://www.googleapis.com/download/storage/v1/b/python-clustering-api.appspot.com/o/images%2FFace%2F124.jpg?generation=1522585329188523&alt=media"
+  ], 
+  [
+    0.8145577585207011, 
+    "https://www.googleapis.com/download/storage/v1/b/python-clustering-api.appspot.com/o/images%2FFace%2F242.jpg?generation=1522585299229997&alt=media"
+  ], 
+  [
+    0.7914929138145477, 
+    "https://www.googleapis.com/download/storage/v1/b/python-clustering-api.appspot.com/o/images%2FFace%2F212.jpg?generation=1522584727478100&alt=media"
+  ], 
+  [
+    0.7806927914191767, 
+    "https://www.googleapis.com/download/storage/v1/b/python-clustering-api.appspot.com/o/images%2FFace%2F099.jpg?generation=1522585251917855&alt=media"
+  ], 
+  [
+    0.6948463995381056, 
+    "https://www.googleapis.com/download/storage/v1/b/python-clustering-api.appspot.com/o/images%2FFace%2F119.jpg?generation=1522584693369035&alt=media"
+  ]
+]
+```
+
