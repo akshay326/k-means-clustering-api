@@ -27,7 +27,9 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
-```
+``` 
+
+Also, try the sample `ImageMatch.apk` android file
 
 ## Sample Result
 Sample Image 
