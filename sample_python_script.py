@@ -5,7 +5,6 @@ import numpy as np
 import http.client
 
 import os
-import io
 import csv
 import base64
 
