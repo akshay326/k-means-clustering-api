@@ -2,9 +2,12 @@ from PIL import Image
 from sklearn.metrics.pairwise import cosine_similarity
 from img_to_vec import Img2Vec
 import numpy as np
+import http.client
 
 import os
+import io
 import csv
+import base64
 
 # For each test image, we store the filename and vector as key, value in a dictionary
 pics = {}
@@ -36,7 +39,7 @@ def add_to_dict(pic_rel_path):
     pics[filename] = vec
 
 
-def main():
+def search_offline():
     pic_rel_path = str(input("Enter relative path of the image to search?\n"))
 
     add_to_dict(pic_rel_path)
@@ -62,5 +65,27 @@ def main():
         print(e)
 
 
+def search_online():
+    pic_rel_path = str(input("Enter relative path of the image to search?\n"))
+
+    with open(pic_rel_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+
+    conn = http.client.HTTPConnection("beard-app.herokuapp.com")
+
+    payload = encoded_string.decode('utf-8')  # This is base64 encoded
+
+    headers = {
+        'Content-Type': "text/plain"
+    }
+
+    conn.request("PUT", "image_clustering", payload, headers)
+
+    res = conn.getresponse()
+    data = res.read()
+
+    print(data.decode("utf-8"))
+
+
 if __name__ == '__main__':
-    main()
+    search_online()
