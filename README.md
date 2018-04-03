@@ -1,6 +1,10 @@
 # k-means-clustering-api
 Sample Python API using flask, uses PyTorch to cluster image vectors. Originally forked [from here](https://github.com/christiansafka/img2vec)
 
+![Flask Logo](https://filestore.hasura.io/v1/file/ee1848f5-9f04-40ba-9d97-60342ba7d673) 
+![PyTorch Logo](https://www.tertiarycourses.com.sg/media/catalog/product/cache/1/image/512x/040ec09b1e35df139433887a97daa66f/p/y/pytorch.png) 
+![Heroku Logo](https://logmatic.io/wp-content/uploads/2015/05/blogimageheroku1.png)
+
 # How to use
 Just make a __PUT__ request [here](http://beard-app.herokuapp.com/image_clustering) with base64 encoded image data using text/plain.
  
