@@ -10,10 +10,10 @@ import http.client
 
 conn = http.client.HTTPConnection("beard-app,herokuapp,com")
 
-payload = "%2F9j%...%2F%2FZ" # This is base64 encoded image data
+payload = "data=%2F9j%...%2F%2FZ" # This is base64 encoded
 
 headers = {
-    'Content-Type': "text/plain"
+    'Content-Type': "application/x-www-form-urlencoded"
     }
 
 conn.request("PUT", "image_clustering", payload, headers)
@@ -32,9 +32,11 @@ var settings = {
   "url": "https://beard-app.herokuapp.com/image_clustering",
   "method": "PUT",
   "headers": {
-    "Content-Type": "text/plain"
+    "Content-Type": "application/x-www-form-urlencoded"
   },
-  "data": "/9j/4A....NpI//Z"   // This is base64 encoded image data
+  "data": {
+    "data": "/9j/4A....NpI//Z"   // This is base64 encoded
+  }
 }
 
 $.ajax(settings).done(function (response) {
