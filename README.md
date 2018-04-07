@@ -8,7 +8,7 @@ Sample Python API using flask, uses PyTorch to cluster image vectors. Originally
 # How to use
 Just make a __PUT__ request [here](http://beard-app.herokuapp.com/image_clustering) with base64 encoded image data using text/plain.
  
-For python, refer [sample python script.py](repo/blob/master/sample_python_script.py)
+For python, refer [sample python script.py](https://github.com/AKS1996/k-means-clustering-api/blob/master/sample_python_script.py)
 
 In Javascript/AJAX
 ```javascript
