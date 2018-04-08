@@ -90,6 +90,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# Server Files
+secret.json
+handle_csv.py
+
 # Spyder project settings
 .spyderproject
 .spyproject
