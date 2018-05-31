@@ -85,6 +85,5 @@ def search_online():
 
     print(data.decode("utf-8"))
 
-
 if __name__ == '__main__':
     search_online()

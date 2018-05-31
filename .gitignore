@@ -94,6 +94,9 @@ venv.bak/
 secret.json
 handle_csv.py
 
+# Training images
+train-images/*
+
 # Spyder project settings
 .spyderproject
 .spyproject
